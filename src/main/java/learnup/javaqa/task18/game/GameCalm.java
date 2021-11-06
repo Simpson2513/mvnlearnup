@@ -1,10 +1,40 @@
 package learnup.javaqa.task18.game;
 
 public class GameCalm {
-    public static boolean isGreenLight = false;
-    public static double MAX_SPEED = 10;
+    public boolean isGreenLight;
+    public double MAX_SPEED;
+    String [] speedPlayers;
 
-    public static int countLoses(double[] speedPlayers) {
+    public GameCalm(boolean isGreenLight, double MAX_SPEED) {
+        this.isGreenLight = isGreenLight;
+        this.MAX_SPEED = MAX_SPEED;
+    }
+
+    public double[] loseArray(double[] speedPlayers) {
+        double arrayLose[] = new double[countLoses(speedPlayers)];
+        int j = 0;
+        for (int i = 0; i < speedPlayers.length; i++) {
+            if ((isValid(speedPlayers[i])) && (isLouseCalamary(speedPlayers[i]))) {
+                arrayLose[j] = speedPlayers[i];
+                j++;
+            }
+        }
+        return arrayLose;
+    }
+
+    public double[] winArray(double[] speedPlayers) {
+        double arrayWin[] = new double[countWins(speedPlayers)];
+        int j = 0;
+        for (int i = 0; i < speedPlayers.length; i++) {
+            if ((isValid(speedPlayers[i])) && (!isLouseCalamary(speedPlayers[i]))) {
+                arrayWin[j] = speedPlayers[i];
+                j++;
+            }
+        }
+        return arrayWin;
+    }
+
+    public int countLoses(double[] speedPlayers) {
         int count = 0;
         for (int i = 0; i < speedPlayers.length; i++) {
             if (isLouseCalamary(speedPlayers[i])) {
@@ -14,37 +44,38 @@ public class GameCalm {
         return count;
     }
 
-    public static int countWins(double[] speedPlayers) {
+    public int countWins(double[] speedPlayers) {
         int countValid = countValid(speedPlayers);
         int countLoses = countLoses(speedPlayers);
         return countValid - countLoses;
     }
 
-    public static double[] LoseArray(double[] speedPlayers) {
-        double ArrayLose[] = new double[countLoses(speedPlayers)];
+    public String[] winStringArray(String[] speedStringPlayers) {
+        String stringArrayWin[] = new String[countArrayWin(speedStringPlayers)];
         int j = 0;
-        for (int i = 0; i < speedPlayers.length; i++) {
-            if ((isValid(speedPlayers[i])) && (isLouseCalamary(speedPlayers[i]))) {
-                ArrayLose[j] = speedPlayers[i];
+        for (int i = 0; i < speedStringPlayers.length; i++) {
+            String[] parts = speedStringPlayers[i].split(" ");
+            if ((isValid(Double.parseDouble(parts[1]))) && (!isLouseCalamary(Double.parseDouble(parts[1])))) {
+                stringArrayWin[j] = parts[0];
                 j++;
             }
         }
-        return ArrayLose;
+        return stringArrayWin;
     }
 
-    public static double[] WinArray(double[] speedPlayers) {
-        double ArrayWin[] = new double[countWins(speedPlayers)];
-        int j = 0;
-        for (int i = 0; i < speedPlayers.length; i++) {
-            if ((isValid(speedPlayers[i])) && (!isLouseCalamary(speedPlayers[i]))) {
-                ArrayWin[j] = speedPlayers[i];
-                j++;
+    private int countArrayWin(String[] speedStringPlayers) {
+        int count = 0;
+        for (int i = 0; i < speedStringPlayers.length; i++) {
+            String[] parts = speedStringPlayers[i].split(" ");
+            if (!isLouseCalamary(Double.parseDouble(parts[1])) && (isValid(Double.parseDouble(parts[1])))) {
+                count++;
             }
         }
-        return ArrayWin;
+        return count;
     }
 
-    public static int countValid(double[] speedPlayers) {
+
+    public int countValid(double[] speedPlayers) {
         int validCount = 0;
         for (int i = 0; i < speedPlayers.length; i++) {
             if (speedPlayers[i] >= 0)
@@ -53,11 +84,11 @@ public class GameCalm {
         return validCount;
     }
 
-    public static boolean isValid(double speedPlayers) {
+    public boolean isValid(double speedPlayers) {
         return speedPlayers >= 0;
     }
 
-    public static boolean isLouseCalamary(double speedPlayer) {
+    public boolean isLouseCalamary(double speedPlayer) {
         return (!isGreenLight && speedPlayer > MAX_SPEED);
     }
 }
