@@ -1,6 +1,6 @@
-package learnup.javaqa.task18.game;
+package learnup.javaqa.task20.game;
 
-public class GameCalm {
+public class GameC {
     public static boolean isGreenLight = false;
     public static double MAX_SPEED = 10;
 
@@ -20,28 +20,52 @@ public class GameCalm {
         return countValid - countLoses;
     }
 
-    public static double[] LoseArray(double[] speedPlayers) {
-        double ArrayLose[] = new double[countLoses(speedPlayers)];
+    public static String[] winStringArray(String[] speedStringPlayers) {
+        String stringArrayWin[] = new String[countArrayWin(speedStringPlayers)];
+        int j = 0;
+        for (int i = 0; i < speedStringPlayers.length; i++) {
+            String[] parts = speedStringPlayers[i].split(" ");
+            if ((isValid(Double.parseDouble(parts[1]))) && (!isLouseCalamary(Double.parseDouble(parts[1])))) {
+                stringArrayWin[j] = parts[0];
+                j++;
+            }
+        }
+        return stringArrayWin;
+    }
+
+    private static int countArrayWin(String[] speedStringPlayers) {
+        int count = 0;
+        for (int i = 0; i < speedStringPlayers.length; i++) {
+            String[] parts = speedStringPlayers[i].split(" ");
+            if (!isLouseCalamary(Double.parseDouble(parts[1])) && (isValid(Double.parseDouble(parts[1])))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static double[] loseArray(double[] speedPlayers) {
+        double arrayLose[] = new double[countLoses(speedPlayers)];
         int j = 0;
         for (int i = 0; i < speedPlayers.length; i++) {
             if ((isValid(speedPlayers[i])) && (isLouseCalamary(speedPlayers[i]))) {
-                ArrayLose[j] = speedPlayers[i];
+                arrayLose[j] = speedPlayers[i];
                 j++;
             }
         }
-        return ArrayLose;
+        return arrayLose;
     }
 
-    public static double[] WinArray(double[] speedPlayers) {
-        double ArrayWin[] = new double[countWins(speedPlayers)];
+    public static double[] winArray(double[] speedPlayers) {
+        double arrayWin[] = new double[countWins(speedPlayers)];
         int j = 0;
         for (int i = 0; i < speedPlayers.length; i++) {
             if ((isValid(speedPlayers[i])) && (!isLouseCalamary(speedPlayers[i]))) {
-                ArrayWin[j] = speedPlayers[i];
+                arrayWin[j] = speedPlayers[i];
                 j++;
             }
         }
-        return ArrayWin;
+        return arrayWin;
     }
 
     public static int countValid(double[] speedPlayers) {
