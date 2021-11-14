@@ -1,4 +1,4 @@
-package learnup.javaqa.task21.game;
+package learnup.javaqa.task22.game;
 
 public class SpeedyGame extends Game {
     private int maxSpeed;
