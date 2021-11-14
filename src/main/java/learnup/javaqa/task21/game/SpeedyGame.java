@@ -1,6 +1,6 @@
 package learnup.javaqa.task21.game;
 
-public class SpeedyGame extends  Game{
+public class SpeedyGame extends Game {
     private int maxSpeed;
 
     public SpeedyGame(boolean isGreenLight, int maxSpeed) {
@@ -8,15 +8,17 @@ public class SpeedyGame extends  Game{
         this.maxSpeed = maxSpeed;
     }
 
-    private boolean isWinGame(int speed) {
-        return (getIsGreenLight() &&  speed >= maxSpeed);
+    @Override
+    protected boolean isWinGame(int speed) {
+        System.out.println("12");
+        return (getIsGreenLight() || speed <= maxSpeed);
     }
 
-    protected void setMaxSpeed(int maxSpeed) {
+    public void setMaxSpeed(int maxSpeed) {
         if (maxSpeed >= 0) this.maxSpeed = maxSpeed;
     }
 
-    protected int getMaxSpeed() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 }

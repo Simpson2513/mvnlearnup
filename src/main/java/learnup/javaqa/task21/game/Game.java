@@ -3,23 +3,20 @@ package learnup.javaqa.task21.game;
 public class Game {
 
     private boolean isGreenLight;
-    private int speed;
 
-    boolean isFailed (int speed){
-        if(isValid(speed)&&isWinGame(speed))
-            return false;
-        else return true;
+    boolean isFailed(int speed) {
+        return !isValid(speed) || !isWinGame(speed);
     }
 
-    Game(boolean isGreenLight){
+    Game(boolean isGreenLight) {
         this.isGreenLight = isGreenLight;
     }
 
-    protected boolean getIsGreenLight (){
+    public boolean getIsGreenLight() {
         return isGreenLight;
     }
 
-    protected void setIsGreenLight (boolean isGreenLight) {
+    public void setIsGreenLight(boolean isGreenLight) {
         this.isGreenLight = isGreenLight;
     }
 
@@ -27,7 +24,7 @@ public class Game {
         return speedPlayers >= 0;
     }
 
-    private boolean isWinGame(int speed) {
+    boolean isWinGame(int speed) {
         return isGreenLight || speed == 0;
     }
 
