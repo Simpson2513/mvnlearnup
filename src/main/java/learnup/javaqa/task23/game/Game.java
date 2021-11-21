@@ -1,4 +1,4 @@
-package learnup.javaqa.task21.game;
+package learnup.javaqa.task23.game;
 
 public class Game {
 
@@ -20,7 +20,7 @@ public class Game {
         this.isGreenLight = isGreenLight;
     }
 
-    protected boolean isValid(double speedPlayers) {
+    protected boolean isValid(int speedPlayers) {
         return speedPlayers >= 0;
     }
 

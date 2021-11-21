@@ -1,4 +1,4 @@
-package learnup.javaqa.task21.game;
+package learnup.javaqa.task23.game;
 
 public class SpeedyGame extends Game {
     private int maxSpeed;
@@ -10,7 +10,6 @@ public class SpeedyGame extends Game {
 
     @Override
     protected boolean isWinGame(int speed) {
-        System.out.println("12");
         return (getIsGreenLight() || speed <= maxSpeed);
     }
 
