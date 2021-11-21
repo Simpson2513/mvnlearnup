@@ -301,7 +301,7 @@ public class GameTest {
         GameManager gameManager = new GameManager(game1);
 
         int actual = gameManager.loser(p1,p2,game1,4);
-        int expected = 1;
+        int expected = -1;
 
         Assertions.assertEquals(expected, actual);
     }
